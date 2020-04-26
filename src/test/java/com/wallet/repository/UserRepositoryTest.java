@@ -17,35 +17,34 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.wallet.entity.User;
 
-
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
 public class UserRepositoryTest {
-	
+
 	private static final String EMAIL = "email@teste.com";
-	
+
 	@Autowired
 	UserRepository repository;
-	
+
 	@Before
 	public void setUp() {
 		User user = new User();
 		user.setNome("Rennan");
 		user.setPassword("senha123");
 		user.setEmail(EMAIL);
-		
+
 		repository.save(user);
-		
+
 	}
-	
+
 	@After
 	public void tearDown() {
-		
+
 		repository.deleteAll();
-		
+
 	}
-	
+
 	@Test
 	public void testSave() {
 		User user = new User();
@@ -54,18 +53,17 @@ public class UserRepositoryTest {
 		user.setEmail("teste@teste.com");
 
 		User response = repository.save(user);
-		
+
 		assertNotNull(response);
-		
+
 	}
-	
+
 	public void testFindByEmail() {
 		Optional<User> response = repository.findByEmailEquals(EMAIL);
-		
+
 		assertTrue(response.isPresent());
 		assertEquals(response.get().getEmail(), EMAIL);
-		
+
 	}
-	
 
 }
