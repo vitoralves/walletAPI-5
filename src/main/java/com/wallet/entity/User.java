@@ -7,11 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "users")
 public class User implements Serializable{
 	
 	/**
@@ -24,7 +26,7 @@ public class User implements Serializable{
 	@Column(nullable = false)
 	private String password;
 	@Column(nullable = false)
-	private String nome;
+	private String name;
 	@Column(nullable = false)
 	private String email;
 	
@@ -40,11 +42,11 @@ public class User implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String nome) {
+		this.name = nome;
 	}
 	public String getEmail() {
 		return email;

@@ -5,9 +5,12 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.Data;
 
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
 
 	private Long id;
@@ -16,7 +19,7 @@ public class UserDTO {
 	private String email;
 	
 	@Length(min=3, max=50, message="O nome deve conter entre 3 e 50 caracteres")
-	private String nome;
+	private String name;
 	
 	@NotNull
 	@Length(min=8, message="A senha deve conter no minimo 8 caracteres")
@@ -38,12 +41,12 @@ public class UserDTO {
 		this.email = email;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String nome) {
+		this.name = nome;
 	}
 
 	public String getPassword() {

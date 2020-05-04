@@ -52,8 +52,8 @@ public class UserControllerTest {
 				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isCreated())
 		.andExpect(jsonPath("$.data.id").value(ID))
 		.andExpect(jsonPath("$.data.email").value(EMAIL))
-		.andExpect(jsonPath("$.data.nome").value(NOME))
-		.andExpect(jsonPath("$.data.password").value(PASSWORD));
+		.andExpect(jsonPath("$.data.name").value(NOME))
+		.andExpect(jsonPath("$.data.password").doesNotExist());
 		
 	}
 	
@@ -74,7 +74,7 @@ public class UserControllerTest {
 		User user = new User();
 		user.setId(ID);
 		user.setEmail(EMAIL);
-		user.setNome(NOME);
+		user.setName(NOME);
 		user.setPassword(PASSWORD);
 		
 		return user;
@@ -85,7 +85,7 @@ public class UserControllerTest {
 		UserDTO dto = new UserDTO();
 		dto.setId(id);
 		dto.setEmail(email);
-		dto.setNome(nome);
+		dto.setName(nome);
 		dto.setPassword(password);
 		
 		ObjectMapper mapper = new ObjectMapper();

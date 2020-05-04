@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import com.wallet.dto.UserDTO;
 import com.wallet.entity.User;
 import com.wallet.response.Response;
 import com.wallet.service.UserService;
+import com.wallet.util.Bcrypit;
 
 @RestController
 @RequestMapping("user")
@@ -44,8 +46,8 @@ public class UserController {
 		User user = new User();
 		user.setId(dto.getId());
 		user.setEmail(dto.getEmail());
-		user.setNome(dto.getNome());
-		user.setPassword(dto.getPassword());
+		user.setName(dto.getName());
+		user.setPassword(Bcrypit.getHash(dto.getPassword()));
 		return user;
 	}
 
@@ -53,8 +55,7 @@ public class UserController {
 		UserDTO userdto = new UserDTO();
 		userdto.setId(u.getId());
 		userdto.setEmail(u.getEmail());
-		userdto.setNome(u.getNome());
-		userdto.setPassword(u.getPassword());
+		userdto.setName(u.getName());
 		return userdto;
 	}
 
